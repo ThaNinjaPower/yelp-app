@@ -1,23 +1,16 @@
-import logo from './logo.svg';
+import { Button, Nav, Form, FormControl, Navbar } from 'react-bootstrap';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Naperville Company Search</Navbar.Brand>
+        <Form inline>
+          <FormControl type="text" placeholder="Search company name" className="mr-sm-2" />
+          <Button variant="primary">Search</Button>
+        </Form>
+      </Navbar>
     </div>
   );
 }
