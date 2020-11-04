@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -22,13 +22,13 @@ class App extends Component {
     this.setState({ input: value });
   }
 
-  searchBusiness = e => {
-    e.preventDefault();
+  searchBusiness = () => {
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${this.state.input}&latitude=${process.env.REACT_APP_NAPERVILLE_LAT}&longitude=${process.env.REACT_APP_NAPERVILLE_LON}`, {
       headers: {
         "Authorization": `Bearer ${process.env.REACT_APP_YELP_API_KEY}`,
       }
     }).then(response => {
+      this.setState({ selected_business_id: '', business_id_details: {} });
       console.log("Business search results response: ", response);
       this.setState({ search_results: response.data.businesses });
     })
@@ -59,21 +59,27 @@ class App extends Component {
                 value={this.state.input}
                 onChange={this.handleInputChange}
               />
-              <Button
-                variant="primary"
-                onClick={this.searchBusiness}
-              >Search</Button>
+              <Link to="/search" onClick={this.searchBusiness}>
+              {/* <Button
+                  variant="primary"
+                  onClick={this.searchBusiness}
+                >Search</Button> */}
+                Search
+              </Link>
             </Form>
           </Navbar>
           <div className="whole-page">
             <Route
-              exact path="/"
-              render={searchProps=>(<Search {...searchProps} searchResults={this.state.search_results} searchDetails={this.searchDetails}/>)}
+              path="/search"
+              render={searchProps => (<Search {...searchProps} searchResults={this.state.search_results} searchDetails={this.searchDetails} />)}
             />
             <Route
               path="/details"
-              render={detailProps=>(<Details {...detailProps} businessIdDetails={this.state.business_id_details}/>)}
+              render={detailProps => (<Details {...detailProps} businessDetails={this.state.business_id_details} />)}
             />
+            <Route exact path="/">
+              <Redirect to="/search"/>
+            </Route>
           </div>
         </div>
       </Router>
