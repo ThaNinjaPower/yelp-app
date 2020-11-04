@@ -1,11 +1,11 @@
 import React from "react";
 
-function Info() {
+function Details() {
     return (
         <div>
-            <p>Info page</p>
+            <p>Details page</p>
         </div>
     )
 }
 
-export default Info;
+export default Details;
