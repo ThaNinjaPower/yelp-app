@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/yelp-app/static/css/main.ab7136cd.chunk.css",
-    "main.js": "/yelp-app/static/js/main.c3a99888.chunk.js",
-    "main.js.map": "/yelp-app/static/js/main.c3a99888.chunk.js.map",
-    "runtime-main.js": "/yelp-app/static/js/runtime-main.d58b3496.js",
-    "runtime-main.js.map": "/yelp-app/static/js/runtime-main.d58b3496.js.map",
-    "static/js/2.e6df7df1.chunk.js": "/yelp-app/static/js/2.e6df7df1.chunk.js",
-    "static/js/2.e6df7df1.chunk.js.map": "/yelp-app/static/js/2.e6df7df1.chunk.js.map",
-    "static/js/3.03e300d1.chunk.js": "/yelp-app/static/js/3.03e300d1.chunk.js",
-    "static/js/3.03e300d1.chunk.js.map": "/yelp-app/static/js/3.03e300d1.chunk.js.map",
+    "main.js": "/yelp-app/static/js/main.f41de181.chunk.js",
+    "main.js.map": "/yelp-app/static/js/main.f41de181.chunk.js.map",
+    "runtime-main.js": "/yelp-app/static/js/runtime-main.597cf755.js",
+    "runtime-main.js.map": "/yelp-app/static/js/runtime-main.597cf755.js.map",
+    "static/js/2.5d17df3d.chunk.js": "/yelp-app/static/js/2.5d17df3d.chunk.js",
+    "static/js/2.5d17df3d.chunk.js.map": "/yelp-app/static/js/2.5d17df3d.chunk.js.map",
+    "static/js/3.bbda454e.chunk.js": "/yelp-app/static/js/3.bbda454e.chunk.js",
+    "static/js/3.bbda454e.chunk.js.map": "/yelp-app/static/js/3.bbda454e.chunk.js.map",
     "index.html": "/yelp-app/index.html",
     "static/css/main.ab7136cd.chunk.css.map": "/yelp-app/static/css/main.ab7136cd.chunk.css.map",
-    "static/js/2.e6df7df1.chunk.js.LICENSE.txt": "/yelp-app/static/js/2.e6df7df1.chunk.js.LICENSE.txt"
+    "static/js/2.5d17df3d.chunk.js.LICENSE.txt": "/yelp-app/static/js/2.5d17df3d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d58b3496.js",
-    "static/js/2.e6df7df1.chunk.js",
+    "static/js/runtime-main.597cf755.js",
+    "static/js/2.5d17df3d.chunk.js",
     "static/css/main.ab7136cd.chunk.css",
-    "static/js/main.c3a99888.chunk.js"
+    "static/js/main.f41de181.chunk.js"
   ]
 }
