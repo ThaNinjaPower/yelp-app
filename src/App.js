@@ -67,13 +67,13 @@ class App extends Component {
           </Navbar>
           <div className="whole-page">
             <Route
-              exact path="/"
+              path="/yelp-app"
               render={props=>(<Search {...props} searchResults={this.state.search_results}/>)}
             />
             <Route
-              path="/info"
+              path="/yelp-app/info"
               render={props=>(<Details {...props} selectedBusinessId={this.state.selected_business_id}/>)} />
-            <Route path="/yelp-app"><Redirect to="/"/></Route>
+            <Route path="/"><Redirect to="/yelp-app"/></Route>
           </div>
         </div>
       </Router>
