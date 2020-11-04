@@ -8,7 +8,7 @@ function Search(props) {
     return (
         <CardColumns>
             {props.searchResults.map(result =>
-                <SearchCard result={result}/>
+                <SearchCard result={result} searchDetails={props.searchDetails}/>
             )}
         </CardColumns>
     )

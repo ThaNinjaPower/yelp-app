@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import axios from "axios";
 
@@ -14,7 +14,8 @@ class App extends Component {
   state = {
     input: '',
     search_results: [],
-    selected_business_id: ''
+    selected_business_id: '',
+    business_id_details: {}
   }
 
   handleInputChange = ({ target: { value } }) => {
@@ -26,7 +27,6 @@ class App extends Component {
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${this.state.input}&latitude=${process.env.REACT_APP_NAPERVILLE_LAT}&longitude=${process.env.REACT_APP_NAPERVILLE_LON}`, {
       headers: {
         "Authorization": `Bearer ${process.env.REACT_APP_YELP_API_KEY}`,
-        "Access-Control-Allow-Origin": "*"
       }
     }).then(response => {
       console.log("Business search results response: ", response);
@@ -37,11 +37,11 @@ class App extends Component {
   searchDetails = businessID => {
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${businessID}`, {
       headers: {
-        "Access-Control-Allow-Origin": "*",
         "Authorization": `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
       }
     }).then(response => {
       console.log("Business details response: ", response);
+      this.setState({ business_id_details: response.data });
     })
   }
 
@@ -67,13 +67,13 @@ class App extends Component {
           </Navbar>
           <div className="whole-page">
             <Route
-              path="/yelp-app"
-              render={props=>(<Search {...props} searchResults={this.state.search_results}/>)}
+              exact path="/"
+              render={searchProps=>(<Search {...searchProps} searchResults={this.state.search_results} searchDetails={this.searchDetails}/>)}
             />
             <Route
-              path="/yelp-app/details"
-              render={props=>(<Details {...props} selectedBusinessId={this.state.selected_business_id}/>)} />
-            <Route path="/"><Redirect to="/yelp-app"/></Route>
+              path="/details"
+              render={detailProps=>(<Details {...detailProps} businessIdDetails={this.state.business_id_details}/>)}
+            />
           </div>
         </div>
       </Router>

@@ -1,9 +1,9 @@
 import React from "react";
 
-function Details() {
+function Details(props) {
     return (
         <div>
-            <p>Details page</p>
+            <h1>{props.businessIdDetails.name}</h1>
         </div>
     )
 }
