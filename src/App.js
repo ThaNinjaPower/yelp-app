@@ -14,7 +14,6 @@ class App extends Component {
   state = {
     input: '',
     search_results: [],
-    selected_business_id: '',
     business_id_details: {}
   }
 
@@ -28,8 +27,8 @@ class App extends Component {
         "Authorization": `Bearer ${process.env.REACT_APP_YELP_API_KEY}`,
       }
     }).then(response => {
-      this.setState({ selected_business_id: '', business_id_details: {} });
-      console.log("Business search results response: ", response);
+      this.setState({ search_results: [], selected_business_id: '', business_id_details: {} });
+      console.log("Business search results response: ", response.data.businesses);
       this.setState({ search_results: response.data.businesses });
     })
   }
@@ -40,12 +39,15 @@ class App extends Component {
         "Authorization": `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
       }
     }).then(response => {
-      console.log("Business details response: ", response);
-      this.setState({ business_id_details: response.data });
+      console.log("Business details response: ", response.data);
+      this.setState({ search_results: [], business_id_details: response.data });
+      localStorage.setItem("Business ID", businessID);
+      console.log("Location", this.state.business_id_details.location.display_address);
     })
   }
 
   render() {
+    console.log("Business details on refresh: ", this.state.business_id_details);
     return (
       <Router>
         <div className="App">
@@ -59,12 +61,11 @@ class App extends Component {
                 value={this.state.input}
                 onChange={this.handleInputChange}
               />
-              <Link to="/search" onClick={this.searchBusiness}>
-              {/* <Button
+              <Link to="/search">
+              <Button
                   variant="primary"
                   onClick={this.searchBusiness}
-                >Search</Button> */}
-                Search
+                >Search</Button>
               </Link>
             </Form>
           </Navbar>
@@ -76,7 +77,9 @@ class App extends Component {
             <Route
               path="/details"
               render={detailProps => (<Details {...detailProps} businessDetails={this.state.business_id_details} />)}
-            />
+            >
+              {this.state.business_id_details === {} && <Redirect to="/search"/>}
+            </Route>
             <Route exact path="/">
               <Redirect to="/search"/>
             </Route>
