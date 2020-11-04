@@ -1,21 +1,16 @@
 import React from "react";
 
-import { Card, Button } from "react-bootstrap";
+import { CardColumns } from "react-bootstrap";
+
+import SearchCard from "../../components/SearchCard";
 
 function Search(props) {
     return (
-        <div>
-            {props.searchResults.map(result=>
-                <Card style={{ width: '36rem'}}>
-                    <Card.Body>
-                        <img src={result.image_url} width="50%"/>
-                        <Card.Title><b>{result.name}</b></Card.Title>
-                        <Card.Subtitle><a href={result.url}>Link</a></Card.Subtitle>
-                        <Button variant="primary">More info</Button>
-                    </Card.Body>
-                </Card>
+        <CardColumns>
+            {props.searchResults.map(result =>
+                <SearchCard result={result}/>
             )}
-        </div>
+        </CardColumns>
     )
 }
 
