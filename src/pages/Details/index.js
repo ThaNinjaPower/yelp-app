@@ -1,8 +1,14 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { Card, CardGroup } from "react-bootstrap";
 
 class Details extends Component {
+    componentDidMount() {
+        this.props.searchDetails(this.props.businessId);
+    }
+
     convertTime = time => {
+
         time = parseInt(time);
         // Afternoon and evening (1PM - 11:59PM)
         if (time >= 1300 && time < 2400) {
@@ -23,6 +29,7 @@ class Details extends Component {
             time += " PM"
         }
 
+        // If hour is 10 or greater
         if (time.length === 6) {
             time = time.slice(0, 1) + ":" + time.slice(1);
         }
@@ -30,7 +37,6 @@ class Details extends Component {
         else {
             time = time.slice(0, 2) + ":" + time.slice(2);
         }
-        console.log("New time: ", time);
         return time;
     }
 
@@ -40,6 +46,8 @@ class Details extends Component {
     }
 
     render() {
+        // console.log("Address", this.props.businessDetails.location.display_address);
+        console.log("Hours", this.props.businessDetails.hours);
         return (
             <CardGroup>
                 <Card>
@@ -47,15 +55,15 @@ class Details extends Component {
                 </Card>
                 <Card bg="dark" text="white">
                     <Card.Header>
-                        <Card.Title>{this.props.businessDetails.name}</Card.Title>
-                        <Card.Subtitle>{this.props.businessDetails.display_phone}</Card.Subtitle>
-                        {/* {this.props.businessDetails.location.display_address.map(line => <Card.Subtitle>{line}</Card.Subtitle>)} */}
+                        <Card.Title><h1>{this.props.businessDetails.name}</h1></Card.Title>
+                        <Card.Subtitle className="mb-2">{this.props.businessDetails.display_phone}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2">{this.props.businessDetails.rating} ({this.props.businessDetails.review_count} reviews)</Card.Subtitle>
+                        {this.props.businessDetails.location !== undefined && this.props.businessDetails.location.display_address.map(line => <Card.Subtitle className="mb-1">{line}</Card.Subtitle>)}
                     </Card.Header>
                     <Card.Body>
-                        <Card.Subtitle>Regular Hours</Card.Subtitle>
-                        {/* {this.props.businessDetails.hours[0].open.map(shift => <div><Card.Subtitle>{this.convertDay(shift.day)}: {this.convertTime(shift.start)} - {this.convertTime(shift.end)}</Card.Subtitle></div>)} */}
+                        <Card.Title className="mb-2">Regular Hours</Card.Title>
+                        {this.props.businessDetails.hours !== undefined && this.props.businessDetails.hours[0].open.map(shift => <div><Card.Subtitle className="mb-2">{this.convertDay(shift.day)}: {this.convertTime(shift.start)} - {this.convertTime(shift.end)}</Card.Subtitle></div>)}
                     </Card.Body>
-                    <Card.Subtitle>{this.props.businessDetails.rating} ({this.props.businessDetails.review_count} reviews)</Card.Subtitle>
                 </Card>
             </CardGroup>
         )

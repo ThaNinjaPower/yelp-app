@@ -14,11 +14,16 @@ class App extends Component {
   state = {
     input: '',
     search_results: [],
+    business_id: '',
     business_id_details: {}
   }
 
   handleInputChange = ({ target: { value } }) => {
     this.setState({ input: value });
+  }
+
+  changeId = id => {
+    this.setState({ business_id: id });
   }
 
   searchBusiness = () => {
@@ -47,7 +52,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("Business details on refresh: ", this.state.business_id_details);
     return (
       <Router>
         <div className="App">
@@ -72,11 +76,23 @@ class App extends Component {
           <div className="whole-page">
             <Route
               path="/search"
-              render={searchProps => (<Search {...searchProps} searchResults={this.state.search_results} searchDetails={this.searchDetails} />)}
+              render={searchProps => (
+                <Search
+                  {...searchProps}
+                  searchResults={this.state.search_results}
+                  changeId={this.changeId}
+                  businessId={this.state.business_id}
+                />)}
             />
             <Route
               path="/details"
-              render={detailProps => (<Details {...detailProps} businessDetails={this.state.business_id_details} />)}
+              render={detailProps => (
+                <Details
+                  {...detailProps}
+                  searchDetails={this.searchDetails}
+                  businessId={this.state.business_id}
+                  businessDetails={this.state.business_id_details}
+                />)}
             >
               {this.state.business_id_details === {} && <Redirect to="/search"/>}
             </Route>
