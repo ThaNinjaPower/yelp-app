@@ -12,7 +12,7 @@ This application locates businesses centered at the Naperville area, displaying 
 
 ## Installation
 
-No installation necessary. Open [this link](https://thaninjapower.github.io/yelp-app
+No installation necessary. Open [this link](https://thaninjapower.github.io/yelp-app).
 
 ## License
 
