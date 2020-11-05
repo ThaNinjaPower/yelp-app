@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/yelp-app/static/css/main.5cc0dc2e.chunk.css",
-    "main.js": "/yelp-app/static/js/main.a76ae177.chunk.js",
-    "main.js.map": "/yelp-app/static/js/main.a76ae177.chunk.js.map",
+    "main.js": "/yelp-app/static/js/main.f0c1c250.chunk.js",
+    "main.js.map": "/yelp-app/static/js/main.f0c1c250.chunk.js.map",
     "runtime-main.js": "/yelp-app/static/js/runtime-main.6123b3c0.js",
     "runtime-main.js.map": "/yelp-app/static/js/runtime-main.6123b3c0.js.map",
     "static/js/2.d5fce831.chunk.js": "/yelp-app/static/js/2.d5fce831.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.6123b3c0.js",
     "static/js/2.d5fce831.chunk.js",
     "static/css/main.5cc0dc2e.chunk.css",
-    "static/js/main.a76ae177.chunk.js"
+    "static/js/main.f0c1c250.chunk.js"
   ]
 }
